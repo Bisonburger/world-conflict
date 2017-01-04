@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <!-- <link rel="icon" type="image/png" href="img/hierarchy.png" /> -->
+        
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="bootswatch/superhero/bootstrap.min.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="jvectormap/jquery-jvectormap.css" type="text/css" media="all" />
+
+        <link rel="stylesheet" href="world-conflict.css" type="text/css" media="all" />
+
+        <script data-main="world-conflict-requirejs" src="requirejs/require.js"></script>
+
+        <meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	    <meta name="description" content="Demonstration for World Conflict Application" />
+	    <meta name="author" content="Matt Young<matthew.young@bisonworks.com" />
+
+        <title>World Conflict Viewer</title>
+    </head>
+
+    <body>
+        <div id="layout-navigation" ui-view="header"></div>
+        <div id="layout-content" ui-view="content"></div>
+        <div id="layout-footer" ui-view="footer"></div>
+    </body>
+
+</html>
