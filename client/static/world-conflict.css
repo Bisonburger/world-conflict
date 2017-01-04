@@ -561,3 +561,10 @@ table {
 @-ms-viewport {
 	width: auto !important;
 }
+
+.ch-slider .ch-slider-bar .ch-slider-fill {
+      background-color: #4E5D6C;
+}
+.ch-slider .ch-slider-bar .ch-slider-line {
+      background-color: #4E5D6C;
+}

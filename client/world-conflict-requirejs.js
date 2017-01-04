@@ -11,11 +11,12 @@ requirejs.config({
 		'angular-ui-router': 'angular-ui-router/angular-ui-router.min',
 		'world-conflict': 'world-conflict',
 		'jvectormap': 'jvectormap/jquery-jvectormap.min',
-		'world-mill': 'jquery-jvectormap-world-mill'
+		'world-mill': 'jquery-jvectormap-world-mill',
+		'range-slider': 'range-slider/slider.min',
 	},
 	shim : {
 		'world-conflict' : {
-			deps : [ 'angular-animate', 'angular-ui-router', 'jvectormap', 'world-mill'],
+			deps : [ 'angular', 'angular-animate', 'angular-ui-router', 'jvectormap', 'world-mill', 'range-slider'],
 			exports: 'wc'
 		},
 		'angular-animate': {
@@ -33,6 +34,9 @@ requirejs.config({
 		},
 		'world-mill':{
 			deps: ['jvectormap']
+		},
+		'range-slider': {
+			deps: ['angular', 'angular-animate']
 		}
 	}
 });

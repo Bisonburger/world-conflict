@@ -1,4 +1,4 @@
-define( [ 'angular',
+define( [ 'angular', 'range-slider',
           '../services/wc-services',
           './world-conflict/world-conflict-component'
           ],
@@ -10,10 +10,10 @@ define( [ 'angular',
  * @name wc.components
  * 
  */
-function( angular, wcServices, 
+function( angular, rangeSlider, wcServices, 
           worldConflictComponent ){
 
-	var wcComponents = angular.module( 'wc.components', ['wc.services', 'ui.router','ngAnimate'] )
+	var wcComponents = angular.module( 'wc.components', ['wc.services', 'ui.router','ngAnimate','chasselberg.slider'] )
 			   .component( 'worldConflict', worldConflictComponent );
 
 	return wcComponents;

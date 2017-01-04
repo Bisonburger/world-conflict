@@ -27,22 +27,38 @@ app.use('/angular-ui-bootstrap', express.static(path.resolve(__dirname, '../node
 app.use('/angular-animate', express.static(path.resolve(__dirname, '../node_modules/angular-animate')));
 app.use('/requirejs', express.static(path.resolve(__dirname, '../node_modules/requirejs')));
 app.use('/jvectormap', express.static(path.resolve(__dirname, '../node_modules/jvectormap-next')));
+app.use('/range-slider', express.static(path.resolve(__dirname, '../node_modules/angular-range-slider/distribute')));
 
 
+/* run once */
+// alasql.promise( 'CREATE FILESTORAGE DATABASE IF NOT EXISTS wc("./server/conflict-data.json");' )
+// .then( () => { alasql( 'ATTACH FILESTORAGE DATABASE wc("./server/conflict-data.json");' ); } )
+// .then( () => { alasql( 'CREATE TABLE IF NOT EXISTS wc.conflict;' ); } )
+// .then( () => { alasql.promise( 'SELECT * INTO wc.conflict FROM csv( "server/full-ged50.csv", {headers: true});' ).then( (data)=> { console.log( 'Created files ' + data.length  ); } ) } );
+
+
+ 
 // set up routes for REST services
 var router = express.Router();
-app.use('/api/wc-service', router);
+app.use('/api/wc-server', router);
 
-router.route('/conflict').get( (req,res) => 
-  alasql.promise( 'select * from xlsx( "server/ged50.xlsx", {sheetid: "Sheet3"} )' )
+alasql( 'ATTACH FILESTORAGE DATABASE wc("./server/conflict-data.json");' );
+
+router.route('/conflict').get( (req,res) =>{
+  var like = "";
+  if( req.query.month )
+    like = " LIKE \"" + req.query.month + "/%\"";
+  alasql.promise( 'select * from wc.conflict where date_start' + like )
     .then( (data) => res.json(data) )
-    .catch( (err) => { console.log( 'Error: ' + err ); return []; } ) );
+    .catch( (err) => { console.log( 'Error: ' + err ); return []; } );
+  
+});
 
 console.log( 'Set up routes' );
 
 // start the server and listen on either the port/IP defined in your environment or
 // on localhost:3000 if there arent any environment variables set
-server.listen(process.env.SSV_PORT || 3000, process.env.SSV_IP || "localhost", function() {
+server.listen(process.env.WCD_PORT || 3000, process.env.WCD_IP || "localhost", function() {
   var addr = server.address();
   console.log("WorldConflict Server listening at", addr.address + ":" + addr.port);
   console.log("WorldConflict Server REST services exposed at", addr.address + ":" + addr.port + '/api/wc-service' );
