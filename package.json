@@ -22,7 +22,7 @@
     "d3": "~3",
     "express": "~4",
     "font-awesome": "^4.6.3",
-    "jquery": "^2.2.4",
+    "jquery": "^3",
     "jvectormap-next": "^3",
     "requirejs": "^2.3.2"
   },
